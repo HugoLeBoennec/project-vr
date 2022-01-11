@@ -1,0 +1,35 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameConfig : MonoBehaviour
+{
+    public TextAsset textJson;
+
+    [System.Serializable]
+    public class GameRule
+    {
+        public int LifeNumber;
+        public int DelayShoot;
+        public int DelayTeleport;
+        public string ColorShotVirus;
+        public string ColorShotKMS;
+        public int RadiusExplosion;
+        public int TimeToAreaContamination;
+    }
+
+    public GameRule gameRules = new GameRule();
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        gameRules = JsonUtility.FromJson<GameRule>(textJson.text);
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
