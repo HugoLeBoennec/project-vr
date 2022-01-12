@@ -4,7 +4,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-    [RequireComponent(typeof(ThirdPersonCharacter))]
+    // [RequireComponent(typeof(ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
         //Camera
@@ -33,14 +33,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         //Rotation de la caméra
         float rotationX = 0;
-        public float rotationSpeed = 2.0f;
+        public float rotationSpeed = 6.0f;
         public float rotationXLimit = 45.0f;
 
         Animator animator;
         int SpeedHash;
         int DirectionHash;
-    public Rigidbody rb;
+        public Rigidbody rb;
 
+        bool m_IsGrounded;
+        Vector3 m_GroundNormal;
 
 
         // Start is called before the first frame update
@@ -49,6 +51,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //Cache le curseur de la souris
             Cursor.visible = false;
             characterController = GetComponent<CharacterController>();
+            rb = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
 
             SpeedHash = Animator.StringToHash("Speed");
@@ -107,9 +110,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //forward = axe arrière/avant
             //right = axe gauche/droite
             moveDirection = forward * speedZ + right * speedX;
-            Debug.Log(animator.GetFloat("Speed"));
-            // Debug.Log(speedX);
-            
+
+
+            // TODO
             animator.SetFloat("Speed", speedZ);
             animator.SetFloat("Direction", speedX);
 
@@ -127,17 +130,23 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 
             //Si le joueur ne touche pas le sol
-            if (!characterController.isGrounded)
+            // if (!rb .isGrounded)
+            // {
+            //     //Applique la gravité * deltaTime
+            //     //Time.deltaTime = Temps écoulé depuis la dernière frame
+            //     moveDirection.y -= gravity * Time.deltaTime;
+            // }
+
+            CheckGroundStatus();
+            if (moveDirection != Vector3.zero)
             {
-                //Applique la gravité * deltaTime
-                //Time.deltaTime = Temps écoulé depuis la dernière frame
-                moveDirection.y -= gravity * Time.deltaTime;
+                rb.MovePosition(rb.position + moveDirection * Time.deltaTime);
+
             }
-
-
-
             //Applique le mouvement
-            characterController.Move(moveDirection * Time.deltaTime);
+            // characterController.Move(moveDirection * Time.deltaTime);
+            // moveAmount = Vector3.SmoothDamp(moveAvmount, move)
+
 
             //Rotation de la caméra
 
@@ -158,5 +167,29 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //Applique la rotation gauche/droite sur le Player
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * rotationSpeed, 0);
         }
+        void CheckGroundStatus()
+        {
+            RaycastHit hitInfo;
+#if UNITY_EDITOR
+            // helper to visualise the ground check ray in the scene view
+            Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down));
+#endif
+            // 0.1f is a small offset to start the ray from inside the character
+            // it is also good to note that the transform position in the sample assets is at the base of the character
+            if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo))
+            {
+                m_GroundNormal = hitInfo.normal;
+                m_IsGrounded = true;
+                animator.applyRootMotion = true;
+            }
+            else
+            {
+                m_IsGrounded = false;
+                m_GroundNormal = Vector3.up;
+                animator.applyRootMotion = false;
+            }
+        }
     }
+
+
 }
