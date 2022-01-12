@@ -4,72 +4,159 @@ using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-    [RequireComponent(typeof (ThirdPersonCharacter))]
+    [RequireComponent(typeof(ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
-        private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
-        private Transform m_Cam;                  // A reference to the main camera in the scenes transform
-        private Vector3 m_CamForward;             // The current forward direction of the camera
-        private Vector3 m_Move;
-        private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
+        //Camera
+        public Camera playerCamera;
 
-        
-        private void Start()
+        //Composant qui permet de faire bouger le joueur
+        CharacterController characterController;
+
+        //Vitesse de marche
+        public float walkingSpeed = 7.5f;
+
+        //Vitesse de course
+        public float runningSpeed = 15f;
+
+        //Vitesse de saut
+        public float jumpSpeed = 8f;
+
+        //Gravité
+        float gravity = 20f;
+
+        //Déplacement
+        Vector3 moveDirection;
+
+        //Marche ou court ?
+        private bool isRunning = false;
+
+        //Rotation de la caméra
+        float rotationX = 0;
+        public float rotationSpeed = 2.0f;
+        public float rotationXLimit = 45.0f;
+
+        Animator animator;
+        int SpeedHash;
+        int DirectionHash;
+    public Rigidbody rb;
+
+
+
+        // Start is called before the first frame update
+        void Start()
         {
-            // get the transform of the main camera
-            if (Camera.main != null)
+            //Cache le curseur de la souris
+            Cursor.visible = false;
+            characterController = GetComponent<CharacterController>();
+            animator = GetComponent<Animator>();
+
+            SpeedHash = Animator.StringToHash("Speed");
+            DirectionHash = Animator.StringToHash("Direction");
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            //Calcule les directions
+            //forward = avant/arrière
+            //right = droite/gauche
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            Vector3 right = transform.TransformDirection(Vector3.right);
+
+            //Est-ce qu'on appuie sur un bouton de direction ?
+
+            // Z = axe arrière/avant
+            float speedZ = Input.GetAxis("Vertical");
+
+            // X = axe gauche/droite
+            float speedX = Input.GetAxis("Horizontal");
+
+            // Y = axe haut/bas
+            float speedY = moveDirection.y;
+
+
+            //Est-ce qu'on appuie sur le bouton pour courir (ici : Shift Gauche) ?
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                m_Cam = Camera.main.transform;
+                //En train de courir
+                isRunning = true;
             }
             else
             {
-                Debug.LogWarning(
-                    "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.", gameObject);
-                // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
+                //En train de marcher
+                isRunning = false;
             }
 
-            // get the third person character ( this should never be null due to require component )
-            m_Character = GetComponent<ThirdPersonCharacter>();
-        }
-
-
-        private void Update()
-        {
-            if (!m_Jump)
+            // Est-ce que l'on court ?
+            if (isRunning)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
-        }
-
-
-        // Fixed update is called in sync with physics
-        private void FixedUpdate()
-        {
-            // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
-            bool crouch = Input.GetKey(KeyCode.C);
-
-            // calculate move direction to pass to character
-            if (m_Cam != null)
-            {
-                // calculate camera relative direction to move:
-                m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                m_Move = v*m_CamForward + h*m_Cam.right;
+                //Multiplie la vitesse par la vitesse de course
+                speedX = speedX * runningSpeed;
+                speedZ = speedZ * runningSpeed;
             }
             else
             {
-                // we use world-relative directions in the case of no main camera
-                m_Move = v*Vector3.forward + h*Vector3.right;
-            }
-#if !MOBILE_INPUT
-			// walk speed multiplier
-	        if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
-#endif
+                //Multiplie la vitesse par la vitesse de marche
+                speedX = speedX * walkingSpeed;
+                speedZ = speedZ * walkingSpeed;
 
-            // pass all parameters to the character control script
-            m_Character.Move(m_Move, crouch, m_Jump);
-            m_Jump = false;
+            }
+
+            //Calcul du mouvement
+            //forward = axe arrière/avant
+            //right = axe gauche/droite
+            moveDirection = forward * speedZ + right * speedX;
+            Debug.Log(animator.GetFloat("Speed"));
+            // Debug.Log(speedX);
+            
+            animator.SetFloat("Speed", speedZ);
+            animator.SetFloat("Direction", speedX);
+
+
+            // Est-ce qu'on appuie sur le bouton de saut (ici : Espace)
+            if (Input.GetButton("Jump") && characterController.isGrounded)
+            {
+
+                moveDirection.y = jumpSpeed;
+            }
+            else
+            {
+                moveDirection.y = speedY;
+            }
+
+
+            //Si le joueur ne touche pas le sol
+            if (!characterController.isGrounded)
+            {
+                //Applique la gravité * deltaTime
+                //Time.deltaTime = Temps écoulé depuis la dernière frame
+                moveDirection.y -= gravity * Time.deltaTime;
+            }
+
+
+
+            //Applique le mouvement
+            characterController.Move(moveDirection * Time.deltaTime);
+
+            //Rotation de la caméra
+
+            //Input.GetAxis("Mouse Y") = mouvement de la souris haut/bas
+            //On est en 3D donc applique ("Mouse Y") sur l'axe de rotation X 
+            rotationX += -Input.GetAxis("Mouse Y") * rotationSpeed;
+
+            //La rotation haut/bas de la caméra est comprise entre -45 et 45 
+            //Mathf.Clamp permet de limiter une valeur
+            //On limite rotationX, entre -rotationXLimit et rotationXLimit (-45 et 45)
+            rotationX = Mathf.Clamp(rotationX, -rotationXLimit, rotationXLimit);
+
+
+            //Applique la rotation haut/bas sur la caméra
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+
+            //Input.GetAxis("Mouse X") = mouvement de la souris gauche/droite
+            //Applique la rotation gauche/droite sur le Player
+            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * rotationSpeed, 0);
         }
     }
 }
