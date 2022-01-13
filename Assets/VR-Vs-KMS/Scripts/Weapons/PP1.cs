@@ -8,6 +8,7 @@ public class PP1 : PlayerWeapon
     public PP1() : base("PP1",20) { }
     public float DelayShoot;
     private bool delay = false;
+    public Camera cam;
 
     [PunRPC]
     public void RpcShoot()
@@ -23,7 +24,10 @@ public class PP1 : PlayerWeapon
     {
         GameObject bullet = Instantiate(Bullet,ShootPoint.transform.position,ShootPoint.transform.rotation);
         Rigidbody br = bullet.GetComponent<Rigidbody>();
-        br.AddRelativeForce(Vector3.forward * 1000 * Time.deltaTime, ForceMode.Impulse);
+        // Vector3 camDirection = cam.transform.rotation.eulerAngles;
+        Vector3 camDirection = cam.transform.forward + new Vector3 (0, 0, 90);
+        Debug.Log(camDirection);
+        br.AddRelativeForce(camDirection * 10 * Time.deltaTime, ForceMode.Impulse);
         yield return new WaitForSeconds(DelayShoot);
         delay = false;
         

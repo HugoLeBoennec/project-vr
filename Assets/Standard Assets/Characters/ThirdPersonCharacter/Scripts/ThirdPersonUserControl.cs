@@ -153,6 +153,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //Input.GetAxis("Mouse Y") = mouvement de la souris haut/bas
             //On est en 3D donc applique ("Mouse Y") sur l'axe de rotation X 
             rotationX += -Input.GetAxis("Mouse Y") * rotationSpeed;
+            animator.SetFloat("LookDirection", rotationX);
 
             //La rotation haut/bas de la caméra est comprise entre -45 et 45 
             //Mathf.Clamp permet de limiter une valeur
