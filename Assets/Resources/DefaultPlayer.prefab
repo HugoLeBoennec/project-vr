@@ -365,7 +365,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9171473168924455802}
-  - component: {fileID: 8955623973901453134}
   - component: {fileID: 9179467198568901155}
   m_Layer: 0
   m_Name: weaponHolder
@@ -389,22 +388,6 @@ Transform:
   m_Father: {fileID: 7636753688091112232}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
---- !u!114 &8955623973901453134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8451614186228082438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69916691bfeaaeb49ad8e41ee5e9fb27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 1772982041017522850}
-  mask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &9179467198568901155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,6 +462,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2661650836149484075, guid: 38e3de80a0c4e714398db79aabdbaccb,
         type: 3}
+    - target: {fileID: 8763476369457137651, guid: 3694fadb841d6f64fb47ec79edded401,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 7712621661542314656}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3694fadb841d6f64fb47ec79edded401, type: 3}
 --- !u!1 &6990306416571502777 stripped
@@ -493,18 +481,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6990988045700488529}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1772982041017522850 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8763476369457137651, guid: 3694fadb841d6f64fb47ec79edded401,
-    type: 3}
-  m_PrefabInstance: {fileID: 6990988045700488529}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6990306416571502777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffd6493fd2532a945a25a8c71655695e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8092581291145874656
 PrefabInstance:
   m_ObjectHideFlags: 0
