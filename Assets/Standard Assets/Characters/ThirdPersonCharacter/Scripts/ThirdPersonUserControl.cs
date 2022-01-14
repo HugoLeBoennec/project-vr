@@ -142,6 +142,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (moveDirection != Vector3.zero)
             {
                 rb.MovePosition(rb.position + moveDirection * Time.deltaTime);
+            }else {
+                rb.velocity = new Vector3(0, rb.velocity.y, 0);//Vector3.zero;
             }
             //Applique le mouvement
             // characterController.Move(moveDirection * Time.deltaTime);
@@ -154,7 +156,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //On est en 3D donc applique ("Mouse Y") sur l'axe de rotation X 
             rotationX += -Input.GetAxis("Mouse Y") * rotationSpeed;
             animator.SetFloat("LookDirection", rotationX);
-            Debug.Log(animator.GetFloat("LookDirection"));
+            // Debug.Log(animator.GetFloat("LookDirection"));
 
             //La rotation haut/bas de la caméra est comprise entre -45 et 45 
             //Mathf.Clamp permet de limiter une valeur

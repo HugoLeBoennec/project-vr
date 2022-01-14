@@ -8,13 +8,15 @@ public class PP1 : PlayerWeapon
     public PP1() : base("PP1",20) { }
     public float DelayShoot;
     private bool delay = false;
-    public Camera cam;
+    public Camera cam; 
+
 
     [PunRPC]
     public void RpcShoot()
     {
         if(!delay)
         {
+            Debug.Log(Screen.height);
             delay = true;
             StartCoroutine(ShootWithDelay());
         }
@@ -42,6 +44,5 @@ public class PP1 : PlayerWeapon
     // Update is called once per frame
     public override void WeaponUpdate()
     {
-        
     }
 }
