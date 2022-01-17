@@ -6,17 +6,6 @@ public class GameConfig : MonoBehaviour
 {
     public TextAsset textJson;
 
-    [System.Serializable]
-    public class GameRule
-    {
-        public int LifeNumber;
-        public int DelayShoot;
-        public int DelayTeleport;
-        public string ColorShotVirus;
-        public string ColorShotKMS;
-        public int RadiusExplosion;
-        public int TimeToAreaContamination;
-    }
 
     public GameRule gameRules = new GameRule();
 
@@ -30,6 +19,23 @@ public class GameConfig : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+}
+
+[System.Serializable]
+public class GameRule
+{
+    public int LifeNumber;
+    public int DelayShoot;
+    public int DelayTeleport;
+    public string ColorShotVirus;
+    public string ColorShotKMS;
+    public int RadiusExplosion;
+    public int TimeToAreaContamination;
+
+    // private void Awake()
+    // {
+    //     Instance = this;
+    // }
 }
