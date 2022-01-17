@@ -14,8 +14,6 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     private GameObject spawnedPlayerPrefab;
     private string prefabName = "TestPlayer";
 
-    private bool KeyUp = false;
-
     private bool first;
 
     public void Start()
@@ -26,20 +24,16 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 
     public void Update()
     {
-        if (Input.GetAxis("Switch view") == 1 & KeyUp)
+        if (Input.GetButtonDown("Switch view"))
         {
             ChangeType();
-            KeyUp = false;
-        }
-        if (Input.GetAxis("Switch view") == 0)
-        {
-            KeyUp = true;
         }
     }
 
     public override void OnJoinedRoom()
     {
-        ActivePrefab = PcPrefab;
+        ActivePrefab = VrPrefab;
+        Debug.Log(ActivePrefab.name);
         prefabName = ActivePrefab.name;
 
         base.OnJoinedRoom();
@@ -75,7 +69,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         }
     }
 
-    private void ChangeType()
+    public void ChangeType()
     {
         if (ActivePrefab == PcPrefab)
         {
