@@ -16,19 +16,19 @@ public class PP1 : PlayerWeapon
     {
         if(!delay)
         {
-            Debug.Log(Screen.height);
             delay = true;
             StartCoroutine(ShootWithDelay());
         }
     }
 
+
     IEnumerator ShootWithDelay()
     {
+        // GameObject bullet = PhotonNetwork.Instantiate(Bullet.name, ShootPoint.transform.position, ShootPoint.transform.rotation);
         GameObject bullet = Instantiate(Bullet,ShootPoint.transform.position,ShootPoint.transform.rotation);
         Rigidbody br = bullet.GetComponent<Rigidbody>();
         // Vector3 camDirection = cam.transform.rotation.eulerAngles;
         Vector3 camDirection = cam.transform.forward + new Vector3 (0, 0, 90);
-        Debug.Log(camDirection);
         br.AddRelativeForce(camDirection * 10 * Time.deltaTime, ForceMode.Impulse);
         yield return new WaitForSeconds(DelayShoot);
         delay = false;
