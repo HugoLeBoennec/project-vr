@@ -4,6 +4,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.UI;
 using Photon.Pun;
 
+
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
     // [RequireComponent(typeof(ThirdPersonCharacter))]
@@ -50,6 +51,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         bool m_IsGrounded;
         Vector3 m_GroundNormal;
 
+        // public gameRule gameRules;
+
         public void removeLife()
         {
             health -= 1;
@@ -80,6 +83,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             DirectionHash = Animator.StringToHash("Direction");
 
             TxtHealth = GameObject.Find("HealthText").GetComponent<Text>();
+
+            GameObject gM = GameObject.Find("GameManager");
+            // Debug.Log(gM.GetComponents);
+            // var gC = gM.GetComponent<GameConfig>();
         }
 
         // Update is called once per frame

@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 7313263233689988624}
   - component: {fileID: 7313263233702611206}
   - component: {fileID: 7313263233695597910}
-  - component: {fileID: 7313263233693427248}
+  - component: {fileID: 1807956880312813565}
   - component: {fileID: 757230451524633445}
   - component: {fileID: 5865296316989977503}
   - component: {fileID: 6626867889830901504}
@@ -235,7 +235,7 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &7313263233693427248
+--- !u!114 &1807956880312813565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7313263233699433814}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521b611700410be45810047f0a74e899, type: 3}
+  m_Script: {fileID: 11500000, guid: aa0a17ef7ff04474fb4c3632a1a070d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 7712621661542314656}
@@ -252,7 +252,7 @@ MonoBehaviour:
   runningSpeed: 15
   jumpSpeed: 8
   health: 5
-  rotationSpeed: 2
+  rotationSpeed: 6
   rotationXLimit: 45
   rb: {fileID: 0}
 --- !u!114 &757230451524633445
