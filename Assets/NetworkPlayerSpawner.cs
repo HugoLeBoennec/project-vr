@@ -56,12 +56,12 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         spawnedPlayerPrefab = PhotonNetwork.Instantiate(prefabName, position, rotation);
         if(prefabName == PcPrefab.name)
         {
-            MonoBehaviour[] comps = spawnedPlayerPrefab.transform.GetChild(1).GetComponents<MonoBehaviour>();
+            MonoBehaviour[] comps = spawnedPlayerPrefab.transform.GetChild(0).GetComponents<MonoBehaviour>();
             foreach(MonoBehaviour c in comps)
             {
                 c.enabled = true;
             }
-            spawnedPlayerPrefab.transform.GetChild(0).gameObject.SetActive(true);
+            spawnedPlayerPrefab.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
         }
     }
 
