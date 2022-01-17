@@ -149,7 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 2661650836149484075, guid: 38e3de80a0c4e714398db79aabdbaccb, type: 3}
   ShootPoint: {fileID: 4164961918341932524}
-  DelayShoot: 1.5
+  DelayShoot: 0.5
+  cam: {fileID: 0}
 --- !u!1 &4164961918341932524
 GameObject:
   m_ObjectHideFlags: 0

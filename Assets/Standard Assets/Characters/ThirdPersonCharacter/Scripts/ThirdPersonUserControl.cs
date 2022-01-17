@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.UI;
+using Photon.Pun;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -25,6 +27,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         //Gravité
         float gravity = 20f;
 
+        public int health;
+        
+        Text TxtHealth;
+
         //Déplacement
         Vector3 moveDirection;
 
@@ -44,6 +50,21 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         bool m_IsGrounded;
         Vector3 m_GroundNormal;
 
+        public void removeLife()
+        {
+            health -= 1;
+        }
+
+        void OnCollisionEnter(Collision Col)
+        {
+            if(Col.gameObject.tag=="Bullet" )
+            {
+                Debug.Log("- 1 pv");
+                removeLife();
+                Destroy(Col.gameObject);
+            }
+            Debug.Log(Col.gameObject.tag);
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -57,6 +78,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             SpeedHash = Animator.StringToHash("Speed");
             DirectionHash = Animator.StringToHash("Direction");
+
+            TxtHealth = GameObject.Find("HealthText").GetComponent<Text>();
         }
 
         // Update is called once per frame
@@ -81,16 +104,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 
             //Est-ce qu'on appuie sur le bouton pour courir (ici : Shift Gauche) ?
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                //En train de courir
-                isRunning = true;
-            }
-            else
-            {
-                //En train de marcher
-                isRunning = false;
-            }
+            // if (Input.GetKey(KeyCode.LeftShift))
+            // {
+            //     //En train de courir
+            //     isRunning = true;
+            // }
+            // else
+            // {
+            //     //En train de marcher
+            //     isRunning = false;
+            // }
 
             // Est-ce que l'on court ?
             if (isRunning)
@@ -170,6 +193,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //Input.GetAxis("Mouse X") = mouvement de la souris gauche/droite
             //Applique la rotation gauche/droite sur le Player
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * rotationSpeed, 0);
+
+            
+            TxtHealth.text = "Heath : " + health;
+            if (health <= 0){
+                Debug.Log("I'm Dead");
+            }
         }
         void CheckGroundStatus()
         {
@@ -194,6 +223,4 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
         }
     }
-
-
 }
