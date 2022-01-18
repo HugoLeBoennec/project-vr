@@ -8,6 +8,7 @@ public abstract class PlayerWeapon : MonoBehaviourPun
 {
     public GameObject Bullet;
     public GameObject ShootPoint;
+    public GameObject DeathPanel;
     private string WeaponName;
     private int WeaponDamage;
 
@@ -30,6 +31,10 @@ public abstract class PlayerWeapon : MonoBehaviourPun
     void Update()
     {
         WeaponUpdate();
+        if(Input.GetKey("X")){
+            DeathPanel = GameObject.Find("DeathScreen");
+            DeathPanel.SetActive(false);
+        }
     }
 
     public abstract void WeaponStart();
