@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/VR-Vs-KMS/Scenes/GameScene.unity
-    guid: 30347d40228ce1a4888f1f7c7e1cd1f6
   - enabled: 1
     path: Assets/VR-Vs-KMS/Scenes/MenuScene.unity
     guid: 1e81b5698bc04a84a896b5b94072ee46
+  - enabled: 1
+    path: Assets/VR-Vs-KMS/Scenes/GameScene.unity
+    guid: 30347d40228ce1a4888f1f7c7e1cd1f6
   m_configObjects: {}
