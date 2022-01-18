@@ -13,7 +13,7 @@ public class GameConfig : MonoBehaviour
     void Start()
     {
         gameRules = JsonUtility.FromJson<GameRule>(textJson.text);
-
+        print(CurrentName.typePlayer);
     }
 
     // Update is called once per frame
@@ -26,6 +26,7 @@ public class GameConfig : MonoBehaviour
 [System.Serializable]
 public class GameRule
 {
+
     public IDictionary<string, Color> ColorsShot = new Dictionary<string, Color>(){
         {"Green", Color.green},
         {"Blue", Color.blue},
@@ -33,6 +34,7 @@ public class GameRule
         {"Yellow", Color.yellow},
         {"Gray", Color.gray}
     };
+  
     public int LifeNumber;
     public int DelayShoot;
     public int DelayTeleport;
