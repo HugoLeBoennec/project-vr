@@ -30,7 +30,7 @@ public class PP1 : PlayerWeapon
         Rigidbody br = bullet.GetComponent<Rigidbody>();
         // Vector3 camDirection = cam.transform.rotation.eulerAngles;
         Vector3 camDirection = cam.transform.forward + new Vector3(0, 0, 90);
-        br.AddRelativeForce(camDirection * 100 * Time.deltaTime, ForceMode.Impulse);
+        br.AddRelativeForce(camDirection * 30 * Time.deltaTime, ForceMode.Impulse);
         yield return new WaitForSeconds(DelayShoot);
         delay = false;
 
