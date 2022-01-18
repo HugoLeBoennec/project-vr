@@ -52,7 +52,7 @@ public class ThirdPersonUserControl : MonoBehaviour
     // public gameRule gameRules;
 
     NetworkPlayerSpawner pS;
-    
+
     public void removeLife()
     {
         health -= 1;
@@ -83,8 +83,6 @@ public class ThirdPersonUserControl : MonoBehaviour
         TxtHealth = GameObject.Find("HealthText").GetComponent<Text>();
 
         GameObject gM = GameObject.Find("GameManager");
-        GameConfig gC = gM.GetComponent<GameConfig>();
-        Debug.Log(gC.gameRules.LifeNumber);
         pS = gM.GetComponent<NetworkPlayerSpawner>();
     }
 

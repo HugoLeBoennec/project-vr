@@ -22,6 +22,7 @@ public class BulletManager : MonoBehaviour
 
         }
             rendu.material.SetColor("_Color", currentColor);
+
     }
 
     // Update is called once per frame
