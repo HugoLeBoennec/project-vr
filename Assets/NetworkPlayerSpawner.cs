@@ -10,6 +10,12 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private GameObject PcPrefab;
+
+    [SerializeField]
+    private GameObject Teleport;
+
+    [SerializeField]
+    private GameObject TeleportArea;
     Camera MainCam;
     private GameObject spawnedPlayerPrefab;
     private string prefabName = "TestPlayer";
@@ -32,8 +38,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        ActivePrefab = VrPrefab;
-        Debug.Log(ActivePrefab.name);
+        ActivePrefab = PcPrefab;
         prefabName = ActivePrefab.name;
 
         base.OnJoinedRoom();
@@ -56,6 +61,11 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
                 c.enabled = true;
             }
             spawnedPlayerPrefab.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            Instantiate(Teleport, position, rotation);
+            Instantiate(TeleportArea, new Vector3(0,0.01f,0), rotation);
         }
     }
 

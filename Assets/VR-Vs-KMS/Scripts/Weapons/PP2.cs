@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PP1 : PlayerWeapon
+public class PP2 : PlayerWeapon
 {
-    public PP1() : base("PP1", 20) { }
+    public PP2() : base("PP2", 20) { }
     public GameObject Bullet;
     public float DelayShoot;
     private bool delay = false;
@@ -13,7 +13,7 @@ public class PP1 : PlayerWeapon
 
 
     [PunRPC]
-    public void RpcShoot()
+    public void RpcShootVr()
     {
         if (!delay)
         {

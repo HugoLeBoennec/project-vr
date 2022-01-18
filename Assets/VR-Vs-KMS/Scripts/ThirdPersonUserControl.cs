@@ -66,7 +66,6 @@ public class ThirdPersonUserControl : MonoBehaviour
             removeLife();
             Destroy(Col.gameObject);
         }
-        Debug.Log(Col.gameObject.tag);
     }
 
     // Start is called before the first frame update
