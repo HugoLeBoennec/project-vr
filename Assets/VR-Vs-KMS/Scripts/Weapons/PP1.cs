@@ -6,6 +6,7 @@ using Photon.Pun;
 public class PP1 : PlayerWeapon
 {
     public PP1() : base("PP1", 20) { }
+    public GameObject Bullet;
     public float DelayShoot;
     private bool delay = false;
     public Camera cam;
