@@ -26,6 +26,13 @@ public class GameConfig : MonoBehaviour
 [System.Serializable]
 public class GameRule
 {
+    public IDictionary<string, Color> ColorsShot = new Dictionary<string, Color>(){
+        {"Green", Color.green},
+        {"Blue", Color.blue},
+        {"Red", Color.red},
+        {"Yellow", Color.yellow},
+        {"Gray", Color.gray}
+    };
     public int LifeNumber;
     public int DelayShoot;
     public int DelayTeleport;

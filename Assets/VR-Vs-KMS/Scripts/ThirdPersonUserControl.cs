@@ -51,6 +51,8 @@ public class ThirdPersonUserControl : MonoBehaviour
 
     // public gameRule gameRules;
 
+    NetworkPlayerSpawner pS;
+
     public void removeLife()
     {
         health -= 1;
@@ -64,7 +66,6 @@ public class ThirdPersonUserControl : MonoBehaviour
             removeLife();
             Destroy(Col.gameObject);
         }
-        Debug.Log(Col.gameObject.tag);
     }
 
     // Start is called before the first frame update
@@ -75,7 +76,6 @@ public class ThirdPersonUserControl : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        Debug.Log(animator);
 
         SpeedHash = Animator.StringToHash("Speed");
         DirectionHash = Animator.StringToHash("Direction");
@@ -83,8 +83,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         TxtHealth = GameObject.Find("HealthText").GetComponent<Text>();
 
         GameObject gM = GameObject.Find("GameManager");
-        GameConfig gC = gM.GetComponent<GameConfig>();
-        Debug.Log(gC.gameRules.LifeNumber);
+        pS = gM.GetComponent<NetworkPlayerSpawner>();
     }
 
     // Update is called once per frame
@@ -205,7 +204,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         TxtHealth.text = "Heath : " + health;
         if (health <= 0)
         {
-            Debug.Log("I'm Dead");
+            pS.ChangeType();
         }
     }
     void CheckGroundStatus()

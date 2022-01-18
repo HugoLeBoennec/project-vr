@@ -10,11 +10,15 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private GameObject PcPrefab;
+
+    [SerializeField]
+    private GameObject Teleport;
+
+    [SerializeField]
+    private GameObject TeleportArea;
     Camera MainCam;
     private GameObject spawnedPlayerPrefab;
     private string prefabName = "TestPlayer";
-
-    private bool KeyUp = false;
 
     private bool first;
 
@@ -26,14 +30,9 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 
     public void Update()
     {
-        if (Input.GetAxis("Switch view") == 1 & KeyUp)
+        if (Input.GetButtonDown("Switch view"))
         {
             ChangeType();
-            KeyUp = false;
-        }
-        if (Input.GetAxis("Switch view") == 0)
-        {
-            KeyUp = true;
         }
     }
 
@@ -63,6 +62,11 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
             }
             spawnedPlayerPrefab.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
         }
+        else
+        {
+            Instantiate(Teleport, position, rotation);
+            Instantiate(TeleportArea, new Vector3(0,0.01f,0), rotation);
+        }
     }
 
     public override void OnLeftRoom()
@@ -75,7 +79,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         }
     }
 
-    private void ChangeType()
+    public void ChangeType()
     {
         if (ActivePrefab == PcPrefab)
         {

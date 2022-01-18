@@ -8,7 +8,21 @@ public class BulletManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Color currentColor;
+        MeshRenderer rendu = gameObject.GetComponent<MeshRenderer>();
+        GameObject gM = GameObject.Find("GameManager");
+        GameConfig gC = gM.GetComponent<GameConfig>();
+        if(gameObject.name.Contains("Bullet Pc"))
+        { 
+            currentColor = gC.gameRules.ColorsShot[gC.gameRules.ColorShotKMS];
+        } 
+        else
+        {
+            currentColor = gC.gameRules.ColorsShot[gC.gameRules.ColorShotVirus];
+
+        }
+            rendu.material.SetColor("_Color", currentColor);
+
     }
 
     // Update is called once per frame
