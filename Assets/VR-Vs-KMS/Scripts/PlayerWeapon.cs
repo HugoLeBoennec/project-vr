@@ -32,15 +32,18 @@ public abstract class PlayerWeapon : MonoBehaviourPun
     void Update()
     {
         WeaponUpdate();
-        if(Input.GetKey("X")){
-            DeathPanel = GameObject.Find("DeathScreen");
-            DeathPanel.SetActive(false);
-            }
         if(WeaponName == "PP2")
         {
             if (SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabPinch").state)
             {
                 photonView.RPC("RpcShootVr", RpcTarget.All);
+            }
+        }
+        else
+        {
+            if(Input.GetButtonDown("Respawn")){
+                DeathPanel = GameObject.Find("DeathScreen");
+                DeathPanel.SetActive(false);
             }
         }
     }

@@ -38,7 +38,15 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        ActivePrefab = PcPrefab;
+        if(CurrentName.typePlayer == "KMS")
+        {
+            ActivePrefab = PcPrefab;
+        }
+        else
+        {
+            ActivePrefab = VrPrefab;
+        }
+           
         prefabName = ActivePrefab.name;
 
         base.OnJoinedRoom();
