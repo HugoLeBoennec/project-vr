@@ -10,7 +10,6 @@ public abstract class PlayerWeapon : MonoBehaviourPun
     public GameObject ShootPoint;
     private string WeaponName;
     private int WeaponDamage;
-    public GameObject Bullet;
     public GameObject DeathPanel;
 
     public PlayerWeapon(string WeaponName, int WeaponDamage)
