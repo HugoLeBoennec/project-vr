@@ -28,6 +28,11 @@ namespace vr_vs_kms
         private int remainingGrenades;
         public float inTimer = 0f;
         private CullingGroup cullGroup;
+        Collider[] colliders;
+
+        bool Player;
+
+        bool VrPlayer;
 
         void Start()
         {
@@ -69,6 +74,11 @@ namespace vr_vs_kms
             }
         }
 
+        void OnTriggerEnter(Collider coll)
+        {
+
+        }
+
         void OnTriggerExit(Collider coll)
         {
             
@@ -76,7 +86,21 @@ namespace vr_vs_kms
 
         void Update()
         {
-            
+            Player = false;
+            VrPlayer = false;
+            colliders = Physics.OverlapSphere(transform.position, cullRadius);
+            foreach (var collider in colliders)
+            {
+                if(collider.gameObject.tag == "Player")
+                {
+                    Player = true;
+                }
+                if(collider.gameObject.tag == "VrPlayer")
+                {
+                    VrPlayer = false;
+                }
+
+            }
         }
 
         private void ColorParticle(ParticleSystem pSys, Color mainColor, Color accentColor)

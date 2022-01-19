@@ -7,6 +7,7 @@ TagManager:
   - ShootPoint
   - Weapon
   - Bullet
+  - VrPlayer
   layers:
   - Default
   - TransparentFX
