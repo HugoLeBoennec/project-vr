@@ -25,7 +25,7 @@ public class DammageManager : MonoBehaviourPun
 
             health -= 1;
             TxtHealth.text = "Health : " + health;
-            Debug.Log(TxtHealth.text);
+            // Debug.Log(TxtHealth.text);
         }
     }
 
