@@ -47,7 +47,6 @@ public class DammageManager : MonoBehaviourPun
         if(photonView.IsMine)
         {
             TxtHealth.text = "Health : " + health;
-            Debug.Log(health);
         }
     }
 }
