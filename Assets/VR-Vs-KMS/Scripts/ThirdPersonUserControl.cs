@@ -2,11 +2,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon;
+
 
 
 
 // [RequireComponent(typeof(ThirdPersonCharacter))]
-public class ThirdPersonUserControl : MonoBehaviour
+public class ThirdPersonUserControl : MonoBehaviourPun
 {
     //Camera
     public Camera playerCamera;
@@ -55,7 +57,8 @@ public class ThirdPersonUserControl : MonoBehaviour
 
     NetworkPlayerSpawner pS;
 
-    public void removeLife()
+    [PunRPC]
+    public void RPCRemoveLife()
     {
         health -= 1;
     }
@@ -65,7 +68,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         if (Col.gameObject.tag == "Bullet")
         {
             Debug.Log("- 1 pv");
-            removeLife();
+            photonView.RPC("RPCRemoveLife", RpcTarget.All);
             Destroy(Col.gameObject);
         }
     }
@@ -86,7 +89,6 @@ public class ThirdPersonUserControl : MonoBehaviour
 
         GameObject gM = GameObject.Find("GameManager");
         GameConfig gC = gM.GetComponent<GameConfig>();
-        Debug.Log(gC.gameRules.LifeNumber);
         pS = gM.GetComponent<NetworkPlayerSpawner>();
         DeathPanel = GameObject.Find("DeathScreen");
 
@@ -211,7 +213,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         if (health <= 0)
         {
 
-            DeadMulti();
+            // DeadMulti();
             if (Input.GetButtonDown("Respawn"))
             {
                 DeathPanel.SetActive(false);

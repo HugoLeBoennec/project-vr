@@ -251,7 +251,7 @@ MonoBehaviour:
   walkingSpeed: 7.5
   runningSpeed: 15
   jumpSpeed: 8
-  health: 0
+  health: 5
   rotationSpeed: 6
   rotationXLimit: 45
   rb: {fileID: 0}

@@ -22,23 +22,28 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 
     private bool first;
 
+    private GameObject tp;
+
     public void Start()
     {
         first = true;
         MainCam = Camera.main;
+        // tp = Instantiate(Teleport);
+        tp.SetActive(false);
+
     }
 
     public void Update()
     {
-        if (Input.GetButtonDown("Switch view"))
-        {
-            ChangeType();
-        }
+        // if (Input.GetButtonDown("Switch view"))
+        // {
+        //     ChangeType();
+        // }
     }
 
     public override void OnJoinedRoom()
     {
-        if(CurrentName.typePlayer == "KMS")
+        if (CurrentName.typePlayer == "KMS")
         {
             ActivePrefab = PcPrefab;
         }
@@ -46,7 +51,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         {
             ActivePrefab = VrPrefab;
         }
-           
+
         prefabName = ActivePrefab.name;
 
         base.OnJoinedRoom();
@@ -61,10 +66,10 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     public void CreatePlayer(string prefabName, Vector3 position, Quaternion rotation)
     {
         spawnedPlayerPrefab = PhotonNetwork.Instantiate(prefabName, position, rotation);
-        if(prefabName == PcPrefab.name)
+        if (prefabName == PcPrefab.name)
         {
             MonoBehaviour[] comps = spawnedPlayerPrefab.transform.GetChild(0).GetComponents<MonoBehaviour>();
-            foreach(MonoBehaviour c in comps)
+            foreach (MonoBehaviour c in comps)
             {
                 c.enabled = true;
             }
@@ -72,8 +77,9 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         }
         else
         {
-            Instantiate(Teleport, position, rotation);
-            Instantiate(TeleportArea, new Vector3(0,0.01f,0), rotation);
+            tp.SetActive(true);
+            TeleportArea.SetActive(true);;
+            // GameObject.Find("TP_Floor")
         }
     }
 
@@ -87,19 +93,25 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         }
     }
 
-    public void ChangeType()
-    {
-        if (ActivePrefab == PcPrefab)
-        {
-            ActivePrefab = VrPrefab;
-            PhotonNetwork.Destroy(spawnedPlayerPrefab);
-            CreatePlayer(VrPrefab.name, transform.position, transform.rotation);
-        }
-        else
-        {
-            ActivePrefab = PcPrefab;
-            PhotonNetwork.Destroy(spawnedPlayerPrefab);
-            CreatePlayer(PcPrefab.name, transform.position, transform.rotation);
-        }
-    }
+    //     public void ChangeType()
+    //     {
+    //         if (ActivePrefab == PcPrefab)
+    //         {
+    //             ActivePrefab = VrPrefab;
+    //             PhotonNetwork.Destroy(spawnedPlayerPrefab);
+    //             CreatePlayer(VrPrefab.name, transform.position, transform.rotation);
+    //             Debug.Log(GameObject.Find("Teleporting(Clone)"));
+    //             Debug.Log("test test test");
+    //             // GameObject.Find("Teleporting").SetActive(true);
+    //         }
+    //         else
+    //         {
+    //             ActivePrefab = PcPrefab;
+    //             Debug.Log(GameObject.Find("Teleporting(Clone)"));
+    //             Debug.Log("test test test");
+    //             // GameObject.Find("Teleporting").SetActive(false);
+    //             PhotonNetwork.Destroy(spawnedPlayerPrefab);
+    //             CreatePlayer(PcPrefab.name, transform.position, transform.rotation);
+    //         }
+    //     }
 }
