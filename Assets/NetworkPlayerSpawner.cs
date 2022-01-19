@@ -20,25 +20,16 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     private GameObject spawnedPlayerPrefab;
     private string prefabName = "TestPlayer";
 
-    private bool first;
-
     private GameObject tp;
 
     public void Start()
     {
-        first = true;
         MainCam = Camera.main;
-        // tp = Instantiate(Teleport);
-        tp.SetActive(false);
-
     }
 
     public void Update()
     {
-        // if (Input.GetButtonDown("Switch view"))
-        // {
-        //     ChangeType();
-        // }
+
     }
 
     public override void OnJoinedRoom()
@@ -77,9 +68,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         }
         else
         {
-            tp.SetActive(true);
-            TeleportArea.SetActive(true);;
-            // GameObject.Find("TP_Floor")
+            PrepareVR();
         }
     }
 
@@ -93,25 +82,12 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         }
     }
 
-    //     public void ChangeType()
-    //     {
-    //         if (ActivePrefab == PcPrefab)
-    //         {
-    //             ActivePrefab = VrPrefab;
-    //             PhotonNetwork.Destroy(spawnedPlayerPrefab);
-    //             CreatePlayer(VrPrefab.name, transform.position, transform.rotation);
-    //             Debug.Log(GameObject.Find("Teleporting(Clone)"));
-    //             Debug.Log("test test test");
-    //             // GameObject.Find("Teleporting").SetActive(true);
-    //         }
-    //         else
-    //         {
-    //             ActivePrefab = PcPrefab;
-    //             Debug.Log(GameObject.Find("Teleporting(Clone)"));
-    //             Debug.Log("test test test");
-    //             // GameObject.Find("Teleporting").SetActive(false);
-    //             PhotonNetwork.Destroy(spawnedPlayerPrefab);
-    //             CreatePlayer(PcPrefab.name, transform.position, transform.rotation);
-    //         }
-    //     }
+    public void PrepareVR()
+    {
+        if(!GameObject.Find("Teleporting(Clone)"))
+        {
+            Instantiate(Teleport);
+            Instantiate(TeleportArea);
+        }
+    }
 }

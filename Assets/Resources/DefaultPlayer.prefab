@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
+  hUD: HealthText
 --- !u!1 &8451614186228082438
 GameObject:
   m_ObjectHideFlags: 0

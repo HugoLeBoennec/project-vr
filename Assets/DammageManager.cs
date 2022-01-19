@@ -10,6 +10,9 @@ public class DammageManager : MonoBehaviourPun
 
     Text TxtHealth;
 
+    [SerializeField]
+    string hUD;
+
     [PunRPC]
     public void RPCRemoveLife()
     {
@@ -38,7 +41,7 @@ public class DammageManager : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        TxtHealth = GameObject.Find("HealthText").GetComponent<Text>();
+        TxtHealth = GameObject.Find(hUD).GetComponent<Text>();
     }
 
     // Update is called once per frame
