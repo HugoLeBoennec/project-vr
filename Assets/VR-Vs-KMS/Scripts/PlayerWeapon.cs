@@ -10,7 +10,6 @@ public abstract class PlayerWeapon : MonoBehaviourPun
     public GameObject ShootPoint;
     private string WeaponName;
     private int WeaponDamage;
-    public GameObject DeathPanel;
 
     public PlayerWeapon(string WeaponName, int WeaponDamage)
     {
@@ -40,10 +39,6 @@ public abstract class PlayerWeapon : MonoBehaviourPun
         }
         else
         {
-            if(Input.GetButtonDown("Respawn")){
-                DeathPanel = GameObject.Find("DeathScreen");
-                DeathPanel.SetActive(false);
-            }
         }
     }
 

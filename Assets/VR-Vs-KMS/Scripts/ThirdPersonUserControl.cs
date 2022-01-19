@@ -50,9 +50,11 @@ public class ThirdPersonUserControl : MonoBehaviour
     Vector3 m_GroundNormal;
 
     // public gameRule gameRules;
+    public GameObject DeathPanel;
+
 
     NetworkPlayerSpawner pS;
-    
+
     public void removeLife()
     {
         health -= 1;
@@ -86,6 +88,8 @@ public class ThirdPersonUserControl : MonoBehaviour
         GameConfig gC = gM.GetComponent<GameConfig>();
         Debug.Log(gC.gameRules.LifeNumber);
         pS = gM.GetComponent<NetworkPlayerSpawner>();
+        DeathPanel = GameObject.Find("DeathScreen");
+
     }
 
     // Update is called once per frame
@@ -203,10 +207,16 @@ public class ThirdPersonUserControl : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * rotationSpeed, 0);
 
 
-        TxtHealth.text = "Heath : " + health;
+        TxtHealth.text = "Health : " + health;
         if (health <= 0)
         {
-            pS.ChangeType();
+
+            DeadMulti();
+            if (Input.GetButtonDown("Respawn"))
+            {
+                DeathPanel.SetActive(false);
+            }
+            // pS.ChangeType();
         }
     }
     void CheckGroundStatus()
@@ -230,5 +240,13 @@ public class ThirdPersonUserControl : MonoBehaviour
             m_GroundNormal = Vector3.up;
             animator.applyRootMotion = false;
         }
+    }
+
+    void DeadMulti()
+    {
+        Debug.Log(DeathPanel);
+        transform.position = new Vector3(50, 50, 50);
+        DeathPanel.SetActive(true);
+
     }
 }

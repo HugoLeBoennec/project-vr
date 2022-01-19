@@ -251,10 +251,12 @@ MonoBehaviour:
   walkingSpeed: 7.5
   runningSpeed: 15
   jumpSpeed: 8
-  health: 5
+  health: 0
   rotationSpeed: 6
   rotationXLimit: 45
   rb: {fileID: 0}
+  DeathPanel: {fileID: 2199097327801484835, guid: d53d0f04f6f72b14aa480e1dc6c45f65,
+    type: 3}
 --- !u!114 &757230451524633445
 MonoBehaviour:
   m_ObjectHideFlags: 0
