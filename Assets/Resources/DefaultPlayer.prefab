@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 5865296316989977503}
   - component: {fileID: 6626867889830901504}
   - component: {fileID: 7995760327421349253}
+  - component: {fileID: 1550573503707915680}
   m_Layer: 0
   m_Name: ThirdPersonController
   m_TagString: Player
@@ -251,7 +252,6 @@ MonoBehaviour:
   walkingSpeed: 7.5
   runningSpeed: 15
   jumpSpeed: 8
-  health: 5
   rotationSpeed: 6
   rotationXLimit: 45
   rb: {fileID: 0}
@@ -348,6 +348,19 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1550573503707915680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7313263233699433814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484521d7fa19a2d40b73dcb0b50d3cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
 --- !u!1 &8451614186228082438
 GameObject:
   m_ObjectHideFlags: 0

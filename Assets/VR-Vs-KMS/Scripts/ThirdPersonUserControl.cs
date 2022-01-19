@@ -28,10 +28,6 @@ public class ThirdPersonUserControl : MonoBehaviourPun
     //Gravité
     float gravity = 20f;
 
-    public int health = 5;
-
-    Text TxtHealth;
-
     //Déplacement
     Vector3 moveDirection;
 
@@ -57,21 +53,9 @@ public class ThirdPersonUserControl : MonoBehaviourPun
 
     NetworkPlayerSpawner pS;
 
-    [PunRPC]
-    public void RPCRemoveLife()
-    {
-        health -= 1;
-    }
+    int playerHealth;
 
-    void OnCollisionEnter(Collision Col)
-    {
-        if (Col.gameObject.tag == "Bullet")
-        {
-            Debug.Log("- 1 pv");
-            photonView.RPC("RPCRemoveLife", RpcTarget.All);
-            Destroy(Col.gameObject);
-        }
-    }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -85,12 +69,12 @@ public class ThirdPersonUserControl : MonoBehaviourPun
         SpeedHash = Animator.StringToHash("Speed");
         DirectionHash = Animator.StringToHash("Direction");
 
-        TxtHealth = GameObject.Find("HealthText").GetComponent<Text>();
-
         GameObject gM = GameObject.Find("GameManager");
         GameConfig gC = gM.GetComponent<GameConfig>();
         pS = gM.GetComponent<NetworkPlayerSpawner>();
         DeathPanel = GameObject.Find("DeathScreen");
+
+        playerHealth = GetComponent<DammageManager>().health;
 
     }
 
@@ -209,8 +193,7 @@ public class ThirdPersonUserControl : MonoBehaviourPun
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * rotationSpeed, 0);
 
 
-        TxtHealth.text = "Health : " + health;
-        if (health <= 0)
+        if (playerHealth <= 0)
         {
 
             // DeadMulti();

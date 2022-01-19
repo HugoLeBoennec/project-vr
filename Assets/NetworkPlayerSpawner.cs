@@ -43,13 +43,13 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        if (CurrentName.typePlayer == "KMS")
+        if (CurrentName.typePlayer == "Virus")
         {
-            ActivePrefab = PcPrefab;
+            ActivePrefab = VrPrefab;
         }
         else
         {
-            ActivePrefab = VrPrefab;
+            ActivePrefab = PcPrefab;
         }
 
         prefabName = ActivePrefab.name;
