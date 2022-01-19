@@ -26,7 +26,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("Connected To Server.");
         base.OnConnectedToMaster();
         RoomOptions rOptions = new RoomOptions();
-        rOptions.MaxPlayers = 10;
+        rOptions.MaxPlayers = 4;
         rOptions.IsVisible = true;
         rOptions.IsOpen = true;
         PhotonNetwork.JoinOrCreateRoom("Room 1", rOptions, TypedLobby.Default);

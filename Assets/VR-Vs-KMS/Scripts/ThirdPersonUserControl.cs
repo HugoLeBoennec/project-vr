@@ -72,7 +72,7 @@ public class ThirdPersonUserControl : MonoBehaviourPun
         GameObject gM = GameObject.Find("GameManager");
         GameConfig gC = gM.GetComponent<GameConfig>();
         pS = gM.GetComponent<NetworkPlayerSpawner>();
-        DeathPanel = GameObject.Find("DeathScreen");
+        DeathPanel = GameObject.Find("DeadCanvas");
 
         playerHealth = GetComponent<DammageManager>().health;
 
@@ -196,10 +196,14 @@ public class ThirdPersonUserControl : MonoBehaviourPun
         if (playerHealth <= 0)
         {
 
-            // DeadMulti();
+            DeadMulti();
             if (Input.GetButtonDown("Respawn"))
             {
                 DeathPanel.SetActive(false);
+                playerHealth = 5;
+                transform.position = new Vector3(0, 0, 0);
+
+
             }
             // pS.ChangeType();
         }

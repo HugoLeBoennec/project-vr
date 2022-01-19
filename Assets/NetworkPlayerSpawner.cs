@@ -51,14 +51,14 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
             MainCam.gameObject.SetActive(false);
 
         }
-        CreatePlayer(prefabName, transform.position, transform.rotation);
+        CreatePlayer(prefabName, new Vector3(-1,1,5), new Vector3(-34,0.8f,4), transform.rotation);
     }
 
-    public void CreatePlayer(string prefabName, Vector3 position, Quaternion rotation)
+    public void CreatePlayer(string prefabName, Vector3 positionPc, Vector3 positionVr, Quaternion rotation)
     {
-        spawnedPlayerPrefab = PhotonNetwork.Instantiate(prefabName, position, rotation);
         if (prefabName == PcPrefab.name)
         {
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate(prefabName, positionPc, Quaternion.Euler(0, -180, 0));
             MonoBehaviour[] comps = spawnedPlayerPrefab.transform.GetChild(0).GetComponents<MonoBehaviour>();
             foreach (MonoBehaviour c in comps)
             {
@@ -68,7 +68,9 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         }
         else
         {
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate(prefabName, positionVr, Quaternion.Euler(0, 90, 0));
             PrepareVR();
+            
         }
     }
 
