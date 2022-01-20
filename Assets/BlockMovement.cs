@@ -13,6 +13,7 @@ public class BlockMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localRotation = transform.localRotation * Quaternion.Inverse(transform.rotation); 
+        transform.localRotation = transform.localRotation * Quaternion.Inverse(transform.rotation);
+        // transform.rotation = new Quaternion(0,0,0,0); 
     }
 }
