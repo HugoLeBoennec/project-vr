@@ -444,7 +444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062bff5b1bfcba5408ded8e1f4410946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VrPrefab: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+  VrPrefab: {fileID: 4180490671742112144, guid: 6165163e3fdc29b48a7202fc5d498d48,
+    type: 3}
   PcPrefab: {fileID: 7313263232949374629, guid: 87b4abaeaad1ae041b116e41a06c0755,
     type: 3}
   Teleport: {fileID: 153878, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
