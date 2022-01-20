@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &147987737088486881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 4180490670436032948}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1067552991136217351}
+  m_Layer: 0
+  m_Name: pistol (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1067552991136217351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 4180490670436032948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147987737088486881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4435675513760106079}
+  m_Father: {fileID: 4180490671741934768}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3209484262923240688
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +401,6 @@ GameObject:
   - component: {fileID: 4180490671752904932}
   - component: {fileID: 4180490670199644326}
   - component: {fileID: 4180490670199644327}
-  - component: {fileID: 3765447608351725127}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -421,7 +451,6 @@ MonoBehaviour:
   - {fileID: 4180490671752944580}
   headCollider: {fileID: 4180490671755031646}
   rigSteamVR: {fileID: 4180490671742110262}
-  rig2DFallback: {fileID: 4180490671742119746}
   audioListener: {fileID: 4180490671741945488}
   headsetOnHead:
     actionPath: /actions/default/in/HeadsetOnHead
@@ -466,21 +495,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &3765447608351725127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4180490671742112144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5f5c64320c25334eb3d348ff790daff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpawner: {fileID: 0}
-  bulletPrefab: {fileID: 8623093478672148532, guid: 2e257e6594f7cde46aee7483e69a5f0b,
-    type: 3}
 --- !u!1 &4180490671742113790
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +817,7 @@ Transform:
   - {fileID: 4180490671741931032}
   - {fileID: 4180490671741991698}
   - {fileID: 4180490671741904142}
-  - {fileID: 4435675513760106079}
+  - {fileID: 1067552991136217351}
   - {fileID: 5655479399086524351}
   m_Father: {fileID: 4180490671741992524}
   m_RootOrder: 2
@@ -2752,6 +2766,37 @@ Transform:
   m_Father: {fileID: 4182194651028545470}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7162174384247207119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 4180490670436032948}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4435675513760106079}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4435675513760106079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e50e0fe8f85cd704aaf12497481eef97,
+    type: 3}
+  m_PrefabInstance: {fileID: 4180490670436032948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162174384247207119}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1067552991136217351}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4180490670436032948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2836,9 +2881,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e50e0fe8f85cd704aaf12497481eef97, type: 3}
---- !u!4 &4435675513760106079 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e50e0fe8f85cd704aaf12497481eef97,
-    type: 3}
-  m_PrefabInstance: {fileID: 4180490670436032948}
-  m_PrefabAsset: {fileID: 0}
