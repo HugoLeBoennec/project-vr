@@ -16,6 +16,9 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private GameObject TeleportArea;
+
+    [SerializeField]
+    private GameObject SteamVR;
     Camera MainCam;
     private GameObject spawnedPlayerPrefab;
     private string prefabName = "TestPlayer";
@@ -90,6 +93,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         {
             Instantiate(Teleport);
             Instantiate(TeleportArea);
+            Instantiate(SteamVR);
         }
     }
 }

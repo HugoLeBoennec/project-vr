@@ -138,15 +138,15 @@ public class ThirdPersonUserControl : MonoBehaviourPun
 
 
         // Est-ce qu'on appuie sur le bouton de saut (ici : Espace)
-        if (Input.GetButton("Jump") && characterController.isGrounded)
-        {
+        // if (Input.GetButton("Jump") && characterController.isGrounded)
+        // {
 
-            moveDirection.y = jumpSpeed;
-        }
-        else
-        {
-            moveDirection.y = speedY;
-        }
+        //     moveDirection.y = jumpSpeed;
+        // }
+        // else
+        // {
+        //     moveDirection.y = speedY;
+        // }
 
 
         //Si le joueur ne touche pas le sol
