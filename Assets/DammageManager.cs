@@ -31,6 +31,7 @@ public class DammageManager : MonoBehaviourPun
 
     void OnCollisionEnter(Collision Col)
     {
+        Debug.Log(Col);
         if (Col.gameObject.tag == "Bullet")
         {
             photonView.RPC("RPCRemoveLife", RpcTarget.All);
