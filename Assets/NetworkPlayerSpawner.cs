@@ -17,8 +17,8 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     [SerializeField]
     private GameObject TeleportArea;
 
-    [SerializeField]
-    private GameObject SteamVR;
+    // [SerializeField]
+    // private GameObject SteamVR;
     Camera MainCam;
     private GameObject spawnedPlayerPrefab;
     private string prefabName = "TestPlayer";
@@ -93,10 +93,10 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         {
             Instantiate(Teleport);
             Instantiate(TeleportArea);
-            Instantiate(SteamVR);
+            // Instantiate(SteamVR);
         }
-        GameObject.Find("Player(Clone)").transform.GetChild(0).GetChild(3).gameObject.SetActive(true);
-        GameObject.Find("Player(Clone)").transform.GetChild(0).GetChild(5).gameObject.SetActive(true);
-        GameObject.Find("Player(Clone)").transform.GetChild(2).gameObject.SetActive(true);
+        // GameObject.Find("Player(Clone)").transform.GetChild(0).GetChild(3).gameObject.SetActive(true);
+        // GameObject.Find("Player(Clone)").transform.GetChild(0).GetChild(5).gameObject.SetActive(true);
+        // GameObject.Find("Player(Clone)").transform.GetChild(2).gameObject.SetActive(true);
     }
 }
