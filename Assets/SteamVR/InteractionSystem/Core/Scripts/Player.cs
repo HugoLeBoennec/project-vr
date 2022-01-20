@@ -31,8 +31,8 @@ namespace Valve.VR.InteractionSystem
 		[Tooltip( "These objects are enabled when SteamVR is available" )]
 		public GameObject rigSteamVR;
 
-		[Tooltip( "These objects are enabled when SteamVR is not available, or when the user toggles out of VR" )]
-		public GameObject rig2DFallback;
+		// [Tooltip( "These objects are enabled when SteamVR is not available, or when the user toggles out of VR" )]
+		// public GameObject rig2DFallback;
 
 		[Tooltip( "The audio listener for this player" )]
 		public Transform audioListener;
@@ -285,7 +285,7 @@ namespace Valve.VR.InteractionSystem
 			else
 			{
 #if !HIDE_DEBUG_UI
-				ActivateRig( rig2DFallback );
+				// ActivateRig( rig2DFallback );
 #endif
 			}
         }
@@ -393,7 +393,7 @@ namespace Valve.VR.InteractionSystem
 			{
 				if ( rigSteamVR.activeSelf )
 				{
-					ActivateRig( rig2DFallback );
+					// ActivateRig( rig2DFallback );
 				}
 				else
 				{
@@ -407,7 +407,7 @@ namespace Valve.VR.InteractionSystem
 		private void ActivateRig( GameObject rig )
 		{
 			rigSteamVR.SetActive( rig == rigSteamVR );
-			rig2DFallback.SetActive( rig == rig2DFallback );
+			// rig2DFallback.SetActive( rig == rig2DFallback );
 
 			if ( audioListener )
 			{

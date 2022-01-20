@@ -232,14 +232,12 @@ MonoBehaviour:
   trackingOriginTransform: {fileID: 447954}
   hmdTransforms:
   - {fileID: 429506}
-  - {fileID: 0}
   hands:
   - {fileID: 11450312}
   - {fileID: 11401046}
   - {fileID: 0}
   headCollider: {fileID: 13533284}
   rigSteamVR: {fileID: 114188}
-  rig2DFallback: {fileID: 0}
   audioListener: {fileID: 471722}
   headsetOnHead:
     actionPath: /actions/default/in/HeadsetOnHead
