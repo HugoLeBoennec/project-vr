@@ -68,7 +68,6 @@ public class DammageManager : MonoBehaviourPun
         colliders = Physics.OverlapCapsule(transform.position  - new Vector3(0,1,0), transform.position  + new Vector3(0,1,0),0.5f);
         foreach (var collider in colliders)
         {
-            Debug.Log("Tag : " + collider.gameObject.tag);
             if(collider.gameObject.tag == "BulletPc")
             {
                 photonView.RPC("RPCRemoveLife", RpcTarget.All);

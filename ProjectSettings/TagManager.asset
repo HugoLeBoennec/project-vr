@@ -8,6 +8,8 @@ TagManager:
   - Weapon
   - Bullet
   - VrPlayer
+  - BulletPc
+  - BulletVr
   layers:
   - Default
   - TransparentFX
