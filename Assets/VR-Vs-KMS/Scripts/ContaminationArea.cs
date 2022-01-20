@@ -34,6 +34,10 @@ namespace vr_vs_kms
 
         bool VrPlayer;
 
+        float PlayerTime;
+
+        Time VrTime;
+
         void Start()
         {
             populateParticleSystemCache();
@@ -63,7 +67,7 @@ namespace vr_vs_kms
 
         void OnStateChanged(CullingGroupEvent cullEvent)
         {
-            Debug.Log($"cullEvent {cullEvent.isVisible}");
+            // Debug.Log($"cullEvent {cullEvent.isVisible}");
             if (cullEvent.isVisible)
             {
                 pSystem.Play(true);
@@ -99,8 +103,15 @@ namespace vr_vs_kms
                 {
                     VrPlayer = false;
                 }
-
+                // Debug.Log("Tag : " + collider.gameObject.tag);
             }
+            if(!Player)
+            {
+                PlayerTime = Time.deltaTime;
+            }
+            // Debug.Log("Time : " + (Time.deltaTime - PlayerTime));
+            // Debug.Log("Player : " + PlayerTime);
+            // if((Time.deltaTime - PlayerTime) == 5f)
         }
 
         private void ColorParticle(ParticleSystem pSys, Color mainColor, Color accentColor)

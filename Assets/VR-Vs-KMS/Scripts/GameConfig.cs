@@ -13,7 +13,7 @@ public class GameConfig : MonoBehaviour
     void Start()
     {
         gameRules = JsonUtility.FromJson<GameRule>(textJson.text);
-        print(CurrentName.typePlayer);
+        // print(CurrentName.typePlayer);
     }
 
     // Update is called once per frame

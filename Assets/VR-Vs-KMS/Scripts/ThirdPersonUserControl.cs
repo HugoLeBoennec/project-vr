@@ -72,10 +72,8 @@ public class ThirdPersonUserControl : MonoBehaviourPun
         GameObject gM = GameObject.Find("GameManager");
         GameConfig gC = gM.GetComponent<GameConfig>();
         pS = gM.GetComponent<NetworkPlayerSpawner>();
-        DeathPanel = GameObject.Find("DeadCanvas");
-
-        playerHealth = GetComponent<DammageManager>().health;
-
+        DeathPanel = GameObject.Find("HUD/DeadCanvas");
+        DeathPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -86,6 +84,8 @@ public class ThirdPersonUserControl : MonoBehaviourPun
         //right = droite/gauche
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
+        playerHealth = GetComponent<DammageManager>().health;
+
 
         //Est-ce qu'on appuie sur un bouton de direction ?
 
@@ -200,7 +200,7 @@ public class ThirdPersonUserControl : MonoBehaviourPun
             if (Input.GetButtonDown("Respawn"))
             {
                 DeathPanel.SetActive(false);
-                playerHealth = 5;
+                 GetComponent<DammageManager>().health = 5;
                 transform.position = new Vector3(0, 0, 0);
 
 
