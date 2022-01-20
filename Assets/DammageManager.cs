@@ -13,6 +13,8 @@ public class DammageManager : MonoBehaviourPun
     [SerializeField]
     string hUD;
 
+    Collider[] colliders;
+
     [PunRPC]
     public void RPCRemoveLife()
     {
@@ -22,22 +24,33 @@ public class DammageManager : MonoBehaviourPun
         }
         else
         {
-
+            
             health -= 1;
             TxtHealth.text = "Health : " + health;
-            // Debug.Log(TxtHealth.text);
+            Debug.Log(TxtHealth.text);
         }
     }
 
     void OnCollisionEnter(Collision Col)
     {
-        Debug.Log(Col);
-        if (Col.gameObject.tag == "Bullet")
+        Debug.Log(Col.gameObject.tag);
+
+        if (Col.gameObject.tag == "BulletVr")
         {
             photonView.RPC("RPCRemoveLife", RpcTarget.All);
             Destroy(Col.gameObject);
         }
     }
+
+    // void OnTriggerEnter(Collision Col)
+    // {
+    //     Debug.Log(Col.gameObject.tag);
+    //     if (Col.gameObject.tag == "Bullet")
+    //     {
+    //         photonView.RPC("RPCRemoveLife", RpcTarget.All);
+    //         Destroy(Col.gameObject);
+    //     }
+    // }
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +64,16 @@ public class DammageManager : MonoBehaviourPun
         if(photonView.IsMine)
         {
             TxtHealth.text = "Health : " + health;
+        }
+        colliders = Physics.OverlapCapsule(transform.position  - new Vector3(0,1,0), transform.position  + new Vector3(0,1,0),0.5f);
+        foreach (var collider in colliders)
+        {
+            Debug.Log("Tag : " + collider.gameObject.tag);
+            if(collider.gameObject.tag == "BulletPc")
+            {
+                photonView.RPC("RPCRemoveLife", RpcTarget.All);
+                Destroy(collider.gameObject);
+            }
         }
     }
 }
