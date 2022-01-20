@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 11465950}
   - component: {fileID: 4615649423099907456}
   - component: {fileID: 8351243212923926970}
+  - component: {fileID: -5625165426819842748}
   m_Layer: 0
   m_Name: Player
   m_TagString: VrPlayer
@@ -325,6 +326,18 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-5625165426819842748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a4542e09d1d5347ba602a672f89158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &114188
 GameObject:
   m_ObjectHideFlags: 0
@@ -8167,15 +8180,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1931443797650157742, guid: d2e8a7e893c349e45ae2901abc8c8534, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d2e8a7e893c349e45ae2901abc8c8534, type: 3}
---- !u!1 &6835415281534401411 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1237548945599020, guid: d2e8a7e893c349e45ae2901abc8c8534,
-    type: 3}
-  m_PrefabInstance: {fileID: 6834248104060457391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6833775730725869247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4031501351044880, guid: d2e8a7e893c349e45ae2901abc8c8534,
+    type: 3}
+  m_PrefabInstance: {fileID: 6834248104060457391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6835415281534401411 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1237548945599020, guid: d2e8a7e893c349e45ae2901abc8c8534,
     type: 3}
   m_PrefabInstance: {fileID: 6834248104060457391}
   m_PrefabAsset: {fileID: 0}
