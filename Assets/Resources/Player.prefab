@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a4542e09d1d5347ba602a672f89158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeathPanel: {fileID: 0}
 --- !u!1 &114188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,7 +2796,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3231061722866269759}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2836,7 +2837,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 3231061722866269759}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
