@@ -95,5 +95,8 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
             Instantiate(TeleportArea);
             Instantiate(SteamVR);
         }
+        GameObject.Find("Player(Clone)").transform.GetChild(0).GetChild(3).gameObject.SetActive(true);
+        GameObject.Find("Player(Clone)").transform.GetChild(0).GetChild(5).gameObject.SetActive(true);
+        GameObject.Find("Player(Clone)").transform.GetChild(2).gameObject.SetActive(true);
     }
 }
