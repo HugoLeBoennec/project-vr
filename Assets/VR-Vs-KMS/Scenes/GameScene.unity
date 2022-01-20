@@ -5495,7 +5495,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContaminationArea (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1771731353998056768, guid: 2ec6fba1a40102843b98f3569a9d95fa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ec6fba1a40102843b98f3569a9d95fa, type: 3}
 --- !u!4 &1299654402 stripped
 Transform:
@@ -6349,7 +6350,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContaminationArea (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1771731353998056768, guid: 2ec6fba1a40102843b98f3569a9d95fa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ec6fba1a40102843b98f3569a9d95fa, type: 3}
 --- !u!4 &1461428257 stripped
 Transform:
@@ -8432,7 +8434,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContaminationArea (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1771731353998056768, guid: 2ec6fba1a40102843b98f3569a9d95fa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ec6fba1a40102843b98f3569a9d95fa, type: 3}
 --- !u!4 &1918675706 stripped
 Transform:
@@ -9412,7 +9415,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContaminationArea (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1771731353998056768, guid: 2ec6fba1a40102843b98f3569a9d95fa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ec6fba1a40102843b98f3569a9d95fa, type: 3}
 --- !u!4 &2116810038 stripped
 Transform:
