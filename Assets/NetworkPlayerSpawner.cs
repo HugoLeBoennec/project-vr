@@ -91,7 +91,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     {
         if(!GameObject.Find("Teleporting(Clone)"))
         {
-            Instantiate(Teleport);
+            // Instantiate(Teleport);
             Instantiate(TeleportArea);
             // Instantiate(SteamVR);
         }
